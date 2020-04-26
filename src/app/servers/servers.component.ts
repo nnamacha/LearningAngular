@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ServersService } from './servers.service';
 
 @Component({
@@ -6,13 +6,16 @@ import { ServersService } from './servers.service';
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent implements OnInit, OnChanges {
   private servers: {id: number, name: string, status: string}[] = [];
 
   constructor(private serversService: ServersService) { }
 
   ngOnInit() {
     this.servers = this.serversService.getServers();
-  }
 
+  }
+  ngOnChanges() {
+  //   this.servers = this.serversService.getServers();
+   }
 }
