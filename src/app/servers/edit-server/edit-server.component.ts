@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Params, Router, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { CanComponentDeactivate } from 'src/app/can-deactive-guard.service';
 
 @Component({
   selector: 'app-edit-server',
@@ -43,7 +44,7 @@ export class EditServerComponent implements OnInit, CanDeactivate<CanComponentDe
     }
 
     if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status) && this.changesSaved === false) {
-      return confirm('Do you want to discard the changes?')
+      return confirm('Do you want to discard the changes?');
     } else {
       return true;
     }
