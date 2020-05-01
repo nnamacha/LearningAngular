@@ -13,6 +13,8 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ServerUpdatedComponent } from './servers/server/server-updated/server-updated.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
@@ -25,7 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ServerUpdatedComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
