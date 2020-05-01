@@ -4,6 +4,7 @@ import { ServersService } from '../servers.service';
 import { ActivatedRoute, Params, Router, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { CanComponentDeactivate } from 'src/app/can-deactive-guard.service';
+import { ErrorsManagementService } from 'src/app/error-page/errors-management.service';
 
 @Component({
   selector: 'app-edit-server',
@@ -19,7 +20,8 @@ export class EditServerComponent implements OnInit, CanDeactivate<CanComponentDe
 
   constructor(private serversService: ServersService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private errorManagement: ErrorsManagementService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: Params) => {
@@ -38,7 +40,9 @@ export class EditServerComponent implements OnInit, CanDeactivate<CanComponentDe
   onUpdateServer() {
     this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
     this.changesSaved = true;
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.errorManagement.updateCurrentError(0);
+    // this.router.navigate(['not-found'], {relativeTo: this.route});
+    this.router.navigate(['not-found']);
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean>| boolean {
